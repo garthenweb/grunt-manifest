@@ -90,8 +90,10 @@ module.exports = function (grunt) {
 
           // hash file contents
           if (options.hash) {
-            grunt.verbose.writeln('Hashing ' + path.join(options.basePath, item));
-            hasher.update(grunt.file.read(path.join(options.basePath, item)), 'binary');
+            if(grunt.file.isFile(path.join(options.basePath, item))) {
+              grunt.verbose.writeln('Hashing ' + path.join(options.basePath, item));
+              hasher.update(grunt.file.read(path.join(options.basePath, item)), 'binary');
+            }
           }
         });
       }
@@ -134,8 +136,10 @@ module.exports = function (grunt) {
           }
 
           options.master.forEach(function (item) {
-            grunt.log.writeln('Hashing ' + path.join(options.basePath, item));
-            hasher.update(grunt.file.read(path.join(options.basePath, item)), 'binary');
+            if(grunt.file.isFile(path.join(options.basePath, item))) {
+              grunt.log.writeln('Hashing ' + path.join(options.basePath, item));
+              hasher.update(grunt.file.read(path.join(options.basePath, item)), 'binary');
+            }
           });
         }
 
