@@ -52,6 +52,11 @@ module.exports = function (grunt) {
         });
       }
 
+      // Exclude dirs
+      files = files.filter(function (item) {
+        return grunt.file.isFile(path.join(options.basePath, item));
+      });
+
       // Set default destination file
       if (!file.dest) {
         file.dest = 'manifest.appcache';
